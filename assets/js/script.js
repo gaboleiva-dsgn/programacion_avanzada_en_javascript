@@ -1,4 +1,13 @@
-// Crear las clases representadas en el diagrama implementando la herencia indicada.
+// Llamamos al json
+const animales = (() => {
+    const url = "http://localhost:5500/animales.json";
+    const getData = async () => {
+        const res = await fetch(url);
+        const datos = await res.json(); 
+        return datos; 
+    };
+    return { getData };
+})();
 
 // creando la clase padre Animal
 class Animal{
@@ -76,3 +85,15 @@ class Aguila extends Animal {
 
     }
 };
+
+// Prueba de select
+
+const selectAnimal = document.getElementById("animal");
+
+let mostrarAnimal = null;
+
+// Event change para detectar el id selecionado
+
+selectAnimal.addEventListener('change', () => {
+    mostrarAnimal = datos.animales.find(animal => animal.name === selectAnimal.value);
+})
